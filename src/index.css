@@ -1,0 +1,36 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Kumbh Sans", "sans-serif";
+
+  /* Primary */
+  --color-Orange: hsl(26, 100%, 55%);
+  --color-Pale-orange: hsl(25, 100%, 94%);
+
+  /* Neutral */
+  --color-Very-dark-blue: hsl(220, 13%, 13%);
+  --color-Dark-grayish-blue: hsl(219, 9%, 45%);
+  --color-Grayish-blue: hsl(220, 14%, 75%);
+  --color-Light-grayish-blue: hsl(223, 64%, 98%);
+  --color-White: hsl(0, 0%, 100%);
+  --color-Black: hsl(0, 0%, 0%);
+  /*(with 75% opacity for lightbox background)*/
+}
+
+@layer base {
+  body {
+    font-size: 16px;
+    font-family: var(--font-display);
+    background-color: var(--color-Light-grayish-blue);
+    color: var(--color-Very-dark-blue);
+  }
+
+  img {
+    display: block;
+    max-width: 100%;
+  }
+}
+
+@utility primary-btn {
+  @apply bg-Orange px-3 py-2 cursor-pointer rounded-md font-bold
+}
