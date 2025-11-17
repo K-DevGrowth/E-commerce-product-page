@@ -1,6 +1,6 @@
 const Hero = ({ quantity, onQuantityChange, onAddCart }) => {
   return (
-    <div>
+    <div className="grid sm:grid-cols-2 grid-cols-1">
       <img
         className="object-cover w-full max-h-70 m-auto"
         src="image-product-1.jpg"
@@ -47,7 +47,7 @@ const Hero = ({ quantity, onQuantityChange, onAddCart }) => {
         </div>
         <button
           type="button"
-          onClick={onAddCart}
+          onClick={() => onAddCart(quantity)}
           className="bg-Orange px-3 py-2 rounded-md font-bold text-Black w-full flex justify-center items-center gap-x-2 hover:bg-Orange/90 transition-colors duration-150"
         >
           <img className="brightness-0" src="icon-cart.svg" alt="" />

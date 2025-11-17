@@ -15,14 +15,29 @@ const App = () => {
   const [quantity, setQuantity] = useState(0);
   const [product] = useState(egProduct);
 
-  const handleAddCart = () => {
-    setCarts([...carts, { product, quantity: quantity }]);
-    console.log(carts);
+  const handleAddCart = (amount) => {
+    const existingProduct = carts.findIndex(
+      (cart) => cart.product.id == product.id
+    );
+    if (existingProduct !== -1) {
+      const updatedCarts = [...carts];
+      updatedCarts[existingProduct] = {
+        ...updatedCarts[existingProduct],
+        quantity: amount,
+      };
+      setCarts(updatedCarts);
+    } else {
+      setCarts([...carts, { product, quantity: amount }]);
+    }
   };
+
+  const handleRemoveCart = () => {
+    setCarts([]);
+  }
 
   return (
     <div className="relative w-screen h-dvh overflow-x-hidden">
-      <Header baskets={carts} />
+      <Header baskets={carts} onRemoveCart={handleRemoveCart} />
       <Hero
         quantity={quantity}
         onQuantityChange={setQuantity}
