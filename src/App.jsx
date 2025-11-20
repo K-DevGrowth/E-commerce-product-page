@@ -1,48 +1,52 @@
 import { useState } from "react";
 import Header from "./components/Header";
-import Hero from "./components/Hero";
+import ProductGallery from "./components/ProductGallery";
+import ProductInfo from "./components/ProductInfo";
 
 const egProduct = {
-  id: 0,
+  id: 1,
+  brand: "Sneaker Company",
   name: "Fall Limited Edition Sneakers",
+  description:
+    "These low-profile sneakers are your perfect casual wear companion. Featuring a durable rubber outer sole, they'll withstand everything the weather can offer.",
   img: "image-product-1-thumbnail.jpg",
   price: 250,
-  discounted: 50,
+  discountPercentage: 50,
 };
 
 const App = () => {
-  const [carts, setCarts] = useState([]);
-  const [quantity, setQuantity] = useState(0);
+  const [cartItems, setCartItems] = useState([]);
   const [product] = useState(egProduct);
 
-  const handleAddCart = (amount) => {
-    const existingProduct = carts.findIndex(
-      (cart) => cart.product.id == product.id
+  const handleAddCart = (quantity) => {
+    const existingItem = cartItems.find(
+      (item) => item.product.id == product.id
     );
-    if (existingProduct !== -1) {
-      const updatedCarts = [...carts];
-      updatedCarts[existingProduct] = {
-        ...updatedCarts[existingProduct],
-        quantity: amount,
-      };
-      setCarts(updatedCarts);
+
+    if (existingItem) {
+      setCartItems(
+        cartItems.map((item) =>
+          item.product.id === product.id
+            ? { ...item, quantity: item.quantity + quantity }
+            : item
+        )
+      );
     } else {
-      setCarts([...carts, { product, quantity: amount }]);
+      setCartItems([...cartItems, { product, quantity }]);
     }
   };
 
-  const handleRemoveCart = () => {
-    setCarts([]);
-  }
+  const handleRemoveCart = (productId) => {
+    setCartItems(cartItems.filter((item) => item.product.id !== productId));
+  };
 
   return (
-    <div className="relative w-screen h-dvh overflow-x-hidden">
-      <Header baskets={carts} onRemoveCart={handleRemoveCart} />
-      <Hero
-        quantity={quantity}
-        onQuantityChange={setQuantity}
-        onAddCart={handleAddCart}
-      />
+    <div className="relative w-screen min-h-screen">
+      <Header cartItems={cartItems} onRemoveFromCart={handleRemoveCart} />
+      <main className="grid sm:grid-cols-2 grid-cols-1">
+        <ProductGallery />
+        <ProductInfo product={product} onAddToCart={handleAddCart} />
+      </main>
     </div>
   );
 };
