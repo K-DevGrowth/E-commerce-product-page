@@ -43,7 +43,7 @@ const App = () => {
   return (
     <div className="relative w-screen min-h-screen">
       <Header cartItems={cartItems} onRemoveFromCart={handleRemoveCart} />
-      <main className="grid sm:grid-cols-2 grid-cols-1">
+      <main className="grid sm:grid-cols-2 grid-cols-1 max-w-full sm:max-w-4xl mt-10 mx-auto items-center">
         <ProductGallery />
         <ProductInfo product={product} onAddToCart={handleAddCart} />
       </main>

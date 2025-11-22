@@ -16,9 +16,9 @@ const Header = ({ cartItems, onRemoveFromCart }) => {
   };
 
   return (
-    <header className="relative w-full p-4">
+    <header className="relative w-full p-6 max-w-5xl mx-auto border-b border-Dark-grayish-blue">
       <div className="flex items-center justify-between">
-        <div className="flex items-center gap-x-5">
+        <div className="flex items-center gap-x-6">
           <img
             onClick={handleShowMenu}
             className={`${showMenu && "brightness-0"} sm:hidden block`}
@@ -36,7 +36,7 @@ const Header = ({ cartItems, onRemoveFromCart }) => {
             </div>
           </div>
         </div>
-        <div className="flex items-center gap-x-5">
+        <div className="flex items-center gap-x-8">
           <img
             onClick={handleShowCart}
             className={`cursor-pointer ${showCart && "brightness-0"}`}

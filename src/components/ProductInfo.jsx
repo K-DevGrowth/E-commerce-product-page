@@ -14,7 +14,7 @@ const ProductInfo = ({ product, onAddToCart }) => {
       <h1 className="text-Black font-bold text-3xl pt-2">{product.name}</h1>
       <p className="text-Dark-grayish-blue py-4">{product.description}</p>
 
-      <div className="flex justify-between items-center">
+      <div className="flex sm:flex-col justify-between items-center sm:items-baseline">
         <div className="flex items-center gap-x-2">
           <span className="text-Black text-2xl font-bold">
             ${discountedPrice.toFixed(2)}
@@ -28,11 +28,13 @@ const ProductInfo = ({ product, onAddToCart }) => {
         </span>
       </div>
 
-      <QuantitySelector quantity={quantity} setQuantity={setQuantity} />
-      <Button onClick={() => onAddToCart(quantity)}>
-        <img className="brightness-0" src="icon-cart.svg" alt="" />
-        Add to cart
-      </Button>
+      <div className="grid sm:grid-cols-[1fr_1.5fr] grid-cols-1 items-center">
+        <QuantitySelector quantity={quantity} setQuantity={setQuantity} />
+        <Button onClick={() => onAddToCart(quantity)}>
+          <img className="brightness-0" src="icon-cart.svg" alt="" />
+          Add to cart
+        </Button>
+      </div>
     </div>
   );
 };
