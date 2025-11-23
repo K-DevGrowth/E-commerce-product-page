@@ -28,7 +28,7 @@ const ProductInfo = ({ product, onAddToCart }) => {
         </span>
       </div>
 
-      <div className="grid sm:grid-cols-[1fr_1.5fr] grid-cols-1 items-center">
+      <div className="grid sm:grid-cols-[1fr_1.5fr] grid-cols-1 gap-x-4 items-center">
         <QuantitySelector quantity={quantity} setQuantity={setQuantity} />
         <Button onClick={() => onAddToCart(quantity)}>
           <img className="brightness-0" src="icon-cart.svg" alt="" />

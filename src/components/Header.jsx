@@ -48,53 +48,60 @@ const Header = ({ cartItems, onRemoveFromCart }) => {
       </div>
 
       {showCart && (
-        <div className="absolute inset-0 top-45 flex justify-center items-center p-4">
-          <div className="bg-White shadow-lg rounded-lg h-50 w-full p-4">
-            <h3 className="font-bold">Cart</h3>
+        <div className="fixed top-20 sm:right-20 sm:w-80 sm:max-w-sm w-full">
+          <div className="bg-White shadow-lg rounded-lg p-4">
+            <h3 className="font-bold mb-4">Cart</h3>
+
             {cartItems.length > 0 ? (
               cartItems.map((item) => (
-                <div key={item.product.id} className="flex gap-x-2 mt-4">
-                  <img
-                    className="w-15 h-15 rounded-md"
-                    src={item.product.img}
-                    alt=""
-                  />
-                  <div>
-                    <p>{item.product.name}</p>
-                    <p className="flex gap-x-4">
-                      $
-                      {(
-                        (item.product.price * item.product.discountPercentage) /
-                        100
-                      ).toFixed(2)}
-                      x {item.quantity}
-                      <span className="font-bold">
+                <>
+                  <div
+                    key={item.product.id}
+                    className="flex items-center gap-x-4 mt-4"
+                  >
+                    <img
+                      className="w-14 sm:w-10 h-4 sm:h-10 rounded-md"
+                      src={item.product.img}
+                      alt=""
+                    />
+                    <div className="flex-1">
+                      <p className="text-sm text-Dark-grayish-blue">
+                        {item.product.name}
+                      </p>
+                      <p className="flex text-sm text-Dark-grayish-blue gap-x-4">
                         $
                         {(
-                          ((item.product.price *
+                          (item.product.price *
                             item.product.discountPercentage) /
-                            100) *
-                          item.quantity
+                          100
                         ).toFixed(2)}
-                      </span>
-                    </p>
+                        x {item.quantity}
+                        <span className="font-bold text-Black">
+                          $
+                          {(
+                            ((item.product.price *
+                              item.product.discountPercentage) /
+                              100) *
+                            item.quantity
+                          ).toFixed(2)}
+                        </span>
+                      </p>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => onRemoveFromCart(item.product.id)}
+                    >
+                      <img src="icon-delete.svg" alt="" />
+                    </button>
                   </div>
-                  <button
-                    type="button"
-                    onClick={() => onRemoveFromCart(item.product.id)}
-                  >
-                    <img src="icon-delete.svg" alt="" />
-                  </button>
-                </div>
+                  <Button className={"mt-4"}>Checkout</Button>
+                </>
               ))
             ) : (
-              <div className="flex justify-center items-center h-full">
-                <span className="text-Dark-grayish-blue font-semibold text-lg">
-                  Your cart is empty.
-                </span>
-              </div>
+              <p className="text-Dark-grayish-blue font-semibold text-lg text-center">
+                Your cart is empty.
+              </p>
             )}
-            <Button>Checkout</Button>
           </div>
         </div>
       )}
