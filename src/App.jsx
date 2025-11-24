@@ -41,9 +41,9 @@ const App = () => {
   };
 
   return (
-    <div className="relative w-screen h-screen">
+    <div className="relative w-screen h-dvh overflow-x-hidden">
       <Header cartItems={cartItems} onRemoveFromCart={handleRemoveCart} />
-      <main className="grid sm:grid-cols-2 grid-cols-1 max-w-full sm:max-w-4xl mt-10 mx-auto items-center">
+      <main className="grid sm:grid-cols-2 grid-cols-1 max-w-full sm:max-w-4xl sm:mt-10 mx-auto items-center">
         <ProductGallery />
         <ProductInfo product={product} onAddToCart={handleAddCart} />
       </main>

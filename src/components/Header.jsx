@@ -16,7 +16,7 @@ const Header = ({ cartItems, onRemoveFromCart }) => {
   };
 
   return (
-    <header className="relative w-full p-6 max-w-5xl mx-auto border-b border-Dark-grayish-blue">
+    <header className="relative w-full p-6 max-w-5xl mx-auto sm:border-b border-Dark-grayish-blue">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-x-6">
           <img
@@ -48,7 +48,7 @@ const Header = ({ cartItems, onRemoveFromCart }) => {
       </div>
 
       {showCart && (
-        <div className="fixed top-20 sm:right-20 sm:w-80 sm:max-w-sm w-full">
+        <div className="fixed sm:top-40 top-50 sm:right-20 sm:w-80 left-1/2 -translate-1/2 sm:translate-x-0 sm:left-auto w-[95%] z-50">
           <div className="bg-White shadow-lg rounded-lg p-4">
             <h3 className="font-bold mb-4">Cart</h3>
 
@@ -60,7 +60,7 @@ const Header = ({ cartItems, onRemoveFromCart }) => {
                     className="flex items-center gap-x-4 mt-4"
                   >
                     <img
-                      className="w-14 sm:w-10 h-4 sm:h-10 rounded-md"
+                      className="w-14 sm:w-10 h-14 sm:h-10 rounded-md"
                       src={item.product.img}
                       alt=""
                     />
