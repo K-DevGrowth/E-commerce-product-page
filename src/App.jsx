@@ -18,34 +18,34 @@ const App = () => {
   const [cartItems, setCartItems] = useState([]);
   const [product] = useState(egProduct);
 
-  const handleAddCart = (quantity) => {
-    const existingItem = cartItems.find(
-      (item) => item.product.id == product.id
-    );
+  const handleAddToCart = (quantity) => {
+    setCartItems((prevItem) => {
+      const existingItem = prevItem.find(
+        (item) => item.product.id == product.id
+      );
 
-    if (existingItem) {
-      setCartItems(
-        cartItems.map((item) =>
+      if (existingItem) {
+        return prevItem.map((item) =>
           item.product.id === product.id
             ? { ...item, quantity: item.quantity + quantity }
             : item
-        )
-      );
-    } else {
-      setCartItems([...cartItems, { product, quantity }]);
-    }
+        );
+      }
+
+      return [...prevItem, { product, quantity }];
+    });
   };
 
-  const handleRemoveCart = (productId) => {
+  const handleRemoveFromCart = (productId) => {
     setCartItems(cartItems.filter((item) => item.product.id !== productId));
   };
 
   return (
     <div className="relative w-screen h-dvh overflow-x-hidden">
-      <Header cartItems={cartItems} onRemoveFromCart={handleRemoveCart} />
+      <Header cartItems={cartItems} onRemoveFromCart={handleRemoveFromCart} />
       <main className="grid sm:grid-cols-2 grid-cols-1 max-w-full sm:max-w-4xl sm:mt-10 mx-auto items-center">
         <ProductGallery />
-        <ProductInfo product={product} onAddToCart={handleAddCart} />
+        <ProductInfo product={product} onAddToCart={handleAddToCart} />
       </main>
     </div>
   );
