@@ -16,12 +16,14 @@ const Header = ({ cartItems, onRemoveFromCart }) => {
   };
 
   return (
-    <header className="relative w-full p-6 max-w-5xl mx-auto sm:border-b border-Dark-grayish-blue">
+    <header className="relative w-full sm:p-6 p-4 max-w-5xl mx-auto sm:border-b border-Dark-grayish-blue">
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-x-6">
           <img
             onClick={handleShowMenu}
-            className={`${showMenu && "brightness-0"} sm:hidden block`}
+            className={`${
+              showMenu && "brightness-0"
+            } sm:hidden block cursor-pointer`}
             src="icon-menu.svg"
             alt=""
           />
@@ -36,14 +38,18 @@ const Header = ({ cartItems, onRemoveFromCart }) => {
             </div>
           </div>
         </div>
-        <div className="flex items-center gap-x-8">
+        <div className="flex items-center sm:gap-x-8 gap-x-2">
           <img
             onClick={handleShowCart}
             className={`cursor-pointer ${showCart && "brightness-0"}`}
             src="icon-cart.svg"
             alt=""
           />
-          <img className="w-10 h-10" src="image-avatar.png" alt="" />
+          <img
+            className="w-10 h-10 border-2 rounded-full border-White hover:border-Orange transition-all duration-150 cursor-pointer"
+            src="image-avatar.png"
+            alt=""
+          />
         </div>
       </div>
 
