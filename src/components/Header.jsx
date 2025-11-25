@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Button from "./Button";
 
 const Header = ({ cartItems, onRemoveFromCart }) => {
   const [showCart, setShowCart] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
+  const cartDropdown = useRef(null);
 
   const navLinks = ["Collections", "Men", "Women", "About", "Contact"];
 
@@ -14,6 +15,20 @@ const Header = ({ cartItems, onRemoveFromCart }) => {
   const handleShowMenu = () => {
     setShowMenu(!showMenu);
   };
+
+  useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (cartDropdown.current && !cartDropdown.current.contains(e.target)) {
+        setShowCart(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   return (
     <header className="relative w-full sm:p-6 p-4 max-w-5xl mx-auto sm:border-b border-Dark-grayish-blue">
@@ -40,6 +55,7 @@ const Header = ({ cartItems, onRemoveFromCart }) => {
         </div>
         <div className="flex items-center sm:gap-x-8 gap-x-2">
           <img
+            ref={cartDropdown}
             onClick={handleShowCart}
             className={`cursor-pointer ${showCart && "brightness-0"}`}
             src="icon-cart.svg"
