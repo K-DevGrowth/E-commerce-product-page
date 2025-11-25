@@ -70,7 +70,10 @@ const Header = ({ cartItems, onRemoveFromCart }) => {
       </div>
 
       {showCart && (
-        <div className="fixed sm:top-40 top-50 sm:right-20 sm:w-80 left-1/2 -translate-1/2 sm:translate-x-0 sm:left-auto w-[95%] z-50">
+        <div
+          ref={cartDropdown}
+          className="fixed sm:top-40 top-50 sm:right-20 sm:w-80 left-1/2 -translate-1/2 sm:translate-x-0 sm:left-auto w-[95%] z-50"
+        >
           <div className="bg-White shadow-lg rounded-lg p-4">
             <h3 className="font-bold mb-4">Cart</h3>
 
