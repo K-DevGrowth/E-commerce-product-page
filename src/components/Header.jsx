@@ -46,7 +46,7 @@ const Header = ({ cartItems, onRemoveFromCart }) => {
           <div className="hidden sm:block">
             <div className="flex space-x-4 items-center">
               {navLinks.map((link) => (
-                <a href="#" key={link}>
+                <a className="hover:border-b-2 border-Orange" href="#" key={link}>
                   {link}
                 </a>
               ))}

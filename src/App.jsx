@@ -37,7 +37,9 @@ const App = () => {
   };
 
   const handleRemoveFromCart = (productId) => {
-    setCartItems(cartItems.filter((item) => item.product.id !== productId));
+    setCartItems((prevItem) =>
+      prevItem.filter((item) => item.product.id !== productId)
+    );
   };
 
   return (
